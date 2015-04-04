@@ -13,9 +13,9 @@ public:
 
 private:
 	float mRadius;
-	float mSlices;
-	float mStacks;
+	int mSlices;
+	int mStacks;
 
-	float mNumVertices;
-	float mNumTriangles;
+	int mNumVertices;
+	int mNumTriangles;
 };

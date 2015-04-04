@@ -57,7 +57,7 @@ VS_OUTPUT GouraudLightingVS(float3 posL : POSITION0, float3 normalL : NORMAL0, f
 
 	float3 spec = t*(gSpecularMtrl*gSpecularLight).rgb;
 	float3 diffuse = s*(gDiffuseLight).rgb;
-	float3 ambient = gAmbientMtrl*gAmbientLight;
+	float3 ambient = gAmbientMtrl.rgb*gAmbientLight.rgb;
 
 	output.diffuse.rgb = diffuse + ambient;
 	output.diffuse.a = gDiffuseMtrl.a;

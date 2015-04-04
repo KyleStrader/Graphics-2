@@ -1,5 +1,5 @@
 #pragma once
-#include "C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\3DClasses\BaseObject3D.h"
+#include ".\3DClasses\BaseObject3D.h"
 class Torus3D :
 public BaseObject3D
 {
@@ -18,7 +18,7 @@ private:
 	UINT mNumSides;
 	UINT mNumRings;
 
-	float mNumVertices;
-	float mNumTriangles;
+	int mNumVertices;
+	int mNumTriangles;
 };
 

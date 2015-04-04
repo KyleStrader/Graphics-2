@@ -68,7 +68,7 @@ float4 PhongPS(float3 normalW : TEXCOORD0, float3 posW : TEXCOORD1, float2 tex0 
 
 	float3 spec = t*(gSpecularMtrl*gSpecularLight).rgb;
 	float3 diffuse = s*(gDiffuseLight).rgb;
-	float3 ambient = gAmbientMtrl*gAmbientLight;
+	float3 ambient = gAmbientMtrl.rgb*gAmbientLight.rgb;
 	float4 da;
 	da.rgb = diffuse + ambient;
 	da.a = gDiffuseMtrl.a;

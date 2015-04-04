@@ -64,5 +64,6 @@
     <FxCompile Include="Gouraud.fx" />
     <FxCompile Include="ambientdiffusespec.fx" />
     <FxCompile Include="Phong.fx" />
+    <FxCompile Include="Skybox.fx" />
   </ItemGroup>
 </Project>

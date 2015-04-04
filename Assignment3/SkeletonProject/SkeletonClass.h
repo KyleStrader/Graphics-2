@@ -66,10 +66,12 @@ private:
 	ID3DXEffect* mFX;
 	ID3DXEffect* mPhongFX;
 	ID3DXEffect* mGouraudFX;
+	ID3DXEffect* mSkyboxFX;
 
 	D3DXHANDLE   mhTech;
 	D3DXHANDLE   mhPhongTech;
 	D3DXHANDLE   mhGouraudTech;
+	D3DXHANDLE   mhSkyboxTech;
 
     std::vector<BaseObject3D*>      m_Objects;
 };

@@ -130,6 +130,7 @@
     <FxCompile Include="ambientdiffusespec.fx" />
     <FxCompile Include="Gouraud.fx" />
     <FxCompile Include="Phong.fx" />
+    <FxCompile Include="Skybox.fx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
