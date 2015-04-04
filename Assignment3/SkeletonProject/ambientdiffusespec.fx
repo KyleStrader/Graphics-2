@@ -56,7 +56,7 @@ OutputVS AmbientDiffuseSpecVS(float3 posL : POSITION0, float3 normalL : NORMAL0)
 	// Compute the ambient, diffuse and specular terms separatly. 
 	float3 spec = t*(gSpecularMtrl*gSpecularLight).rgb;
 	float3 diffuse = s*(gDiffuseMtrl*gDiffuseLight).rgb;
-	float3 ambient = gAmbientMtrl*gAmbientLight;
+	float3 ambient = gAmbientMtrl.rgb*gAmbientLight.rgb;
 	
 	// Sum all the terms together and copy over the diffuse alpha.
 	outVS.color.rgb = ambient + diffuse + spec;

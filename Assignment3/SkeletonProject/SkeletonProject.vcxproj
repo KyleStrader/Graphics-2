@@ -106,6 +106,8 @@
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="GfxStats.cpp" />
     <ClCompile Include="SkeletonClass.cpp" />
+    <ClCompile Include="SkyboxEffect.cpp" />
+    <ClCompile Include="SkyboxObject.cpp" />
     <ClCompile Include="Sphere3D.cpp" />
     <ClCompile Include="Teapot3D.cpp" />
     <ClCompile Include="Torus3D.cpp" />
@@ -117,6 +119,8 @@
     <ClInclude Include="Box3D.h" />
     <ClInclude Include="Cone3D.h" />
     <ClInclude Include="Cylinder3D.h" />
+    <ClInclude Include="SkyboxEffect.h" />
+    <ClInclude Include="SkyboxObject.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="d3dUtil.h" />
@@ -128,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ambientdiffusespec.fx" />
+    <FxCompile Include="EnvReflections.fx" />
     <FxCompile Include="Gouraud.fx" />
     <FxCompile Include="Phong.fx" />
     <FxCompile Include="Skybox.fx" />

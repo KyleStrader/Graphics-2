@@ -4,61 +4,30 @@
 // Does Skybox dome texturing! Based on Frank Luna's code
 //=============================================================================
 
-float4x4 gWorldViewProj;
+uniform extern float4x4 gWorldViewProj;
 
-TextureCube gCubeMap;
+uniform extern texture gCubeMap;
 
-sampler TexS = sampler_state
+sampler EnvMapS = sampler_state
 {
 	Texture = <gCubeMap>;
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
 	MipFilter = LINEAR;
+	AddressU = WRAP;
+	AddressV = WRAP;
 };
 
-struct VertexIn
+void VS(float3 posL : POSITION0, out float4 oPosH : POSITION0, out float3 oEnvTex: TEXCOORD0)
 {
-	float3 PosL: POSITION;
-};
-
-struct VertexOut
-{
-	float4 PosH: POSITION0;
-	float3 PosL: TEXCOORD0;
-	float2 tex0: TEXCOORD1;
-};
-
-VertexOut VS(VertexIn vin, float2 tex0:TEXCOORD1)
-{
-	VertexOut vout;
-
-	// Set z = w so that z/w = 1
-	// means that our skybox will always be the last thing drawn
-	vout.PosH = mul(float4(vin.PosL, 1.0f), gWorldViewProj).xyww;
-
-	// Use local vertex position as cubemap lookup vector
-	vout.PosL = vin.PosL;
-	vout.tex0 = tex0;
-
-	return vout;
+	oPosH = mul(float4(posL, 1.0f), gWorldViewProj).xyww;
+	oEnvTex = posL;
 }
 
-float4 PS(VertexOut pin) : COLOR
+float4 PS(float3 envTex : TEXCOORD0) : COLOR
 {
-	float3 rgbColor = tex2D(TexS, pin.tex0).rgb;
-	float4 color = float4(rgbColor.rgb, 1);
-	return color;
+	return texCUBE(EnvMapS, envTex);
 }
-
-RasterizerState NoCull
-{
-	CullMode = None;
-};
-
-DepthStencilState LessEqualDSS
-{
-	DepthFunc = LESS_EQUAL;
-};
 
 technique SkyTech
 {
@@ -67,7 +36,12 @@ technique SkyTech
 		vertexShader = compile vs_2_0 VS();
 		pixelShader = compile ps_2_0 PS();
 
-		//SetRasterizerState(NoCull);
-		//SetDepthStencilState(LessEqualDSS, 0);
+		CullMode = None;
+		ZFunc = Always;
+		StencilEnable = true;
+		StencilFunc = Always;
+
+		StencilPass = Replace;
+		StencilRef = 0;
 	}
 }

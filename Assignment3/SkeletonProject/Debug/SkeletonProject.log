@@ -1,44 +1,6 @@
-﻿Build started 4/4/2015 3:07:22 PM.
-     1>Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" on node 2 (Rebuild target(s)).
-     1>FxCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T fx_2_0 /Fo "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\ambientdiffusespec.cso" ambientdiffusespec.fx 
-     1>C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\ambientdiffusespec.fx(59,9-44): warning X3206: implicit truncation of vector type
-     1>FXC : warning X4717: Effects deprecated for D3DCompiler_47
-         
-         compilation object save succeeded; see C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\ambientdiffusespec.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T fx_2_0 /Fo "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Gouraud.cso" Gouraud.fx 
-     1>FXC : warning X4717: Effects deprecated for D3DCompiler_47
-         
-         compilation object save succeeded; see C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Gouraud.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T fx_2_0 /Fo "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Phong.cso" Phong.fx 
-     1>FXC : warning X4717: Effects deprecated for D3DCompiler_47
-         
-         compilation object save succeeded; see C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Phong.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T fx_2_0 /Fo "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Skybox.cso" Skybox.fx 
-     1>FXC : warning X4717: Effects deprecated for D3DCompiler_47
-         
-         compilation object save succeeded; see C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\Skybox.cso
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt 3DClasses\BaseObject3D.cpp 3DClasses\Vertex.cpp BaseMaterial.cpp Box3D.cpp Cone3D.cpp Cylinder3D.cpp d3dApp.cpp DirectInput.cpp GfxStats.cpp SkeletonClass.cpp Sphere3D.cpp Teapot3D.cpp Torus3D.cpp
-         Torus3D.cpp
-         Teapot3D.cpp
-         Sphere3D.cpp
-         SkeletonClass.cpp
-         GfxStats.cpp
-     1>c:\users\cody\desktop\graphics-2\assignment3\skeletonproject\gfxstats.cpp(28): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-     1>c:\users\cody\desktop\graphics-2\assignment3\skeletonproject\gfxstats.cpp(119): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
-         DirectInput.cpp
-         d3dApp.cpp
-         Cylinder3D.cpp
-         Cone3D.cpp
-         Box3D.cpp
-         BaseMaterial.cpp
-         Vertex.cpp
-         BaseObject3D.cpp
-         Generating Code...
-       Link:
+﻿Build started 4/4/2015 4:21:00 PM.
+     1>Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" on node 2 (Build target(s)).
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9d.lib dxguid.lib DxErr.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.lib" /MACHINE:X86 /SAFESEH Debug\BaseObject3D.obj
          Debug\Vertex.obj
          Debug\BaseMaterial.obj
@@ -49,13 +11,14 @@
          Debug\DirectInput.obj
          Debug\GfxStats.obj
          Debug\SkeletonClass.obj
+         Debug\SkyboxEffect.obj
          Debug\Sphere3D.obj
          Debug\Teapot3D.obj
          Debug\Torus3D.obj
      1>BaseObject3D.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          SkeletonProject.vcxproj -> C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.exe
-     1>Done Building Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:10.42
+Time Elapsed 00:00:00.37
