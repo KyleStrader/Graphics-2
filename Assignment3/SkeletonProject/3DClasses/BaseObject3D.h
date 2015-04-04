@@ -49,12 +49,12 @@ public:
     virtual void Render( IDirect3DDevice9* gd3dDevice, D3DXMATRIX& view, D3DXMATRIX& projection );
 
 	void SetViewerPos(D3DXVECTOR3 &pos);
-	void ConnectEffect(ID3DXEffect* fx);
-	void ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
+	void ConnectEffect(EffectType type, ID3DXEffect* fx);
+	void ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile);
 	void MoveToPoint(float x, float y, float z);
 	void RotateAroundAxis(D3DXVECTOR3 axis, float degrees);
 
-	ID3DXEffect* GetEffect() { return mpMaterial->GetEffect(); };
+	ID3DXEffect* GetEffect(EffectType type) { return mpMaterial->GetEffect(type); };
 	void ToggleDiffuse() { return mpMaterial->ToggleDiffuse(); };
 	void ToggleAmbient() { return mpMaterial->ToggleAmbient(); };
 	void ToggleSpecular() { return mpMaterial->ToggleSpecular(); };

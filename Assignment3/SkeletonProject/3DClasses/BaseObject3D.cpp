@@ -40,14 +40,14 @@ void BaseObject3D::SetViewerPos(D3DXVECTOR3 &pos)
 	mpMaterial->setEyePos(pos);
 }
 
-void BaseObject3D::ConnectEffect(ID3DXEffect* fx)
+void BaseObject3D::ConnectEffect(EffectType type, ID3DXEffect* fx)
 {
-	mpMaterial->ConnectToEffect(fx);
+	mpMaterial->ConnectToEffect(type, fx);
 }
 
-void BaseObject3D::ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+void BaseObject3D::ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile)
 {
-	mpMaterial->ConnectToTexture(gd3dDevice, sourceFile);
+	mpMaterial->ConnectToTexture(type, gd3dDevice, sourceFile);
 }
 
 //-----------------------------------------------------------------------------
