@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="3DClasses\BaseObject3D.cpp" />
+    <ClCompile Include="3DClasses\Vertex.cpp" />
+    <ClCompile Include="d3dApp.cpp" />
+    <ClCompile Include="DirectInput.cpp" />
+    <ClCompile Include="GfxStats.cpp" />
+    <ClCompile Include="SkeletonClass.cpp" />
+    <ClCompile Include="Cone3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Cylinder3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Box3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMaterial.cpp" />
+    <ClCompile Include="Teapot3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Torus3D.cpp">
+      <Filter>3D Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3DClasses\BaseObject3D.h" />
+    <ClInclude Include="3DClasses\Vertex.h" />
+    <ClInclude Include="d3dApp.h" />
+    <ClInclude Include="d3dUtil.h" />
+    <ClInclude Include="DirectInput.h" />
+    <ClInclude Include="GfxStats.h" />
+    <ClInclude Include="SkeletonClass.h" />
+    <ClInclude Include="Cone3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cylinder3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Box3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMaterial.h" />
+    <ClInclude Include="Torus3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Teapot3D.h">
+      <Filter>3D Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="3D Objects">
+      <UniqueIdentifier>{e3738383-332e-48fa-9429-7cd3b9ad2950}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Gouraud.fx" />
+    <FxCompile Include="ambientdiffusespec.fx" />
+    <FxCompile Include="Phong.fx" />
+  </ItemGroup>
+</Project>
