@@ -19,8 +19,8 @@
 #include <list>
 
 #include "SkeletonClass.h"
+#include "BaseMaterial.h"
 #include "3DClasses\BaseObject3D.h"
-#include "SkyboxObject.h"
 #include "3DClasses\Vertex.h"
 #include "Cone3D.h"
 #include "Cylinder3D.h"
@@ -81,6 +81,17 @@ void SkeletonClass::buildFx()
 	// Obtain handles.
 	mhSkyboxTech = mSkyboxFX->GetTechniqueByName("SkyboxTech");
 
+	// Normal Mapping
+	// Create the FX from a .fx file.
+	/*errors = 0;
+	HR(D3DXCreateEffectFromFile(gd3dDevice, "NormalMap.fx",
+		0, 0, D3DXSHADER_DEBUG, 0, &mNormalMapFX, &errors));
+	if (errors)
+		MessageBox(0, (char*)errors->GetBufferPointer(), 0, 0);
+
+	// Obtain handles.
+	mhNormalMapTech = mNormalMapFX->GetTechniqueByName("NormalMapTech");*/
+
 	switchFx();
 }
 
@@ -90,8 +101,6 @@ void SkeletonClass::switchFx()
 	{
 		mFX = mPhongFX;
 		mhTech = mhPhongTech;
-		//mFX = mSkyboxFX;
-		//mhTech = mhSkyboxTech;
 	}
 	else
 	{
@@ -117,7 +126,6 @@ SkeletonClass::SkeletonClass(HINSTANCE hInstance, std::string winCaption, D3DDEV
 	InitAllVertexDeclarations();
 
     // repleace or add to the following object creation
-	//m_Objects.push_back(new Box3D(100, 100, 100));
 	m_Objects.push_back(new Box3D(4, 4, 4));
 	m_Objects.push_back(new Sphere3D(2, 24, 24));
 	m_Objects.push_back(new Cylinder3D(3, 3, 4, 16, 4));
@@ -128,20 +136,18 @@ SkeletonClass::SkeletonClass(HINSTANCE hInstance, std::string winCaption, D3DDEV
 	
 	buildFx();
 	
-	/*m_Objects[0]->ConnectEffect(mFX);
-	m_Objects[1]->ConnectEffect(mFX);
-	m_Objects[2]->ConnectEffect(mFX);
-	m_Objects[3]->ConnectEffect(mFX);
-	m_Objects[4]->ConnectEffect(mFX);
-	m_Objects[5]->ConnectEffect(mFX);*/
+	m_Objects[0]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+	m_Objects[1]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+	m_Objects[2]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+	m_Objects[3]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+	m_Objects[4]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+	m_Objects[5]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
 
 	for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
-	{	
+	{
 		m_Objects[obj]->Create(gd3dDevice);
-		m_Objects[obj]->ConnectEffect(mFX);
-		m_Objects[obj]->ConnectToTexture(gd3dDevice, "./Textures/crate.jpg");
-		m_Objects[obj]->ConnectToCubeMap(gd3dDevice, "./Textures/cubeMap.dds");
-		m_Objects[obj]->SetReflectivity(.5f);
+		m_Objects[obj]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
+		m_Objects[obj]->ConnectToTexture(TYPE_LIGHTING_DIFFUSE, gd3dDevice, "./Textures/crate.jpg");
 	}
 	m_Objects[2]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), 90);
 	m_Objects[5]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), -90);
@@ -227,19 +233,6 @@ void SkeletonClass::handleInput(float dt)
 	}
 	else aKeyDown = false;
 
-	if (gDInput->keyDown(DIK_R))
-	{
-		if (!rKeyDown)
-		{
-			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
-			{
-				m_Objects[obj]->ToggleReflection();
-			}
-			rKeyDown = true;
-		}
-	}
-	else rKeyDown = false;
-
 	if (gDInput->keyDown(DIK_O))
 	{
 		if (!oKeyDown)
@@ -270,7 +263,7 @@ void SkeletonClass::handleInput(float dt)
 
 			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
 			{
-				m_Objects[obj]->ConnectEffect(mFX);
+				m_Objects[obj]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
 			}
 
 			pKeyDown = true;
@@ -331,6 +324,7 @@ void SkeletonClass::drawScene()
 		HR(mFX->EndPass());
 	}
 	HR(mFX->End());
+
 
     // display the render statistics
     GfxStats::GetInstance()->display();
