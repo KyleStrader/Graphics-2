@@ -26,6 +26,8 @@
     <ClCompile Include="Torus3D.cpp">
       <Filter>3D Objects</Filter>
     </ClCompile>
+    <ClCompile Include="SkyboxEffect.cpp" />
+    <ClCompile Include="SkyboxObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3DClasses\BaseObject3D.h" />
@@ -54,6 +56,8 @@
     <ClInclude Include="Teapot3D.h">
       <Filter>3D Objects</Filter>
     </ClInclude>
+    <ClInclude Include="SkyboxEffect.h" />
+    <ClInclude Include="SkyboxObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3D Objects">
@@ -65,5 +69,6 @@
     <FxCompile Include="ambientdiffusespec.fx" />
     <FxCompile Include="Phong.fx" />
     <FxCompile Include="Skybox.fx" />
+    <FxCompile Include="EnvReflections.fx" />
   </ItemGroup>
 </Project>

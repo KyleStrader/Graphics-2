@@ -1,25 +1,22 @@
-﻿Build started 2/28/2015 5:27:57 PM.
-     1>Project "C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/4/2015 5:15:30 PM.
+     1>Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SkeletonClass.cpp
-         SkeletonClass.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\Release\SkeletonProject.exe" /INCREMENTAL:NO /NOLOGO d3d9.lib d3dx9d.lib dxguid.lib DxErr.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\Release\SkeletonProject.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\Release\SkeletonProject.lib" /MACHINE:X86 /SAFESEH Release\BaseObject3D.obj
-         Release\Vertex.obj
-         Release\BaseMaterial.obj
-         Release\Box3D.obj
-         Release\Cone3D.obj
-         Release\Cylinder3D.obj
-         Release\d3dApp.obj
-         Release\DirectInput.obj
-         Release\GfxStats.obj
-         Release\SkeletonClass.obj
-         Release\Sphere3D.obj
-         Generating code
-         Finished generating code
-         SkeletonProject.vcxproj -> C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\Release\SkeletonProject.exe
-     1>Done Building Project "C:\Users\Bob\Documents\Graphics 2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Cone3D.cpp Cylinder3D.cpp Sphere3D.cpp Teapot3D.cpp Torus3D.cpp
+         Cone3D.cpp
+     1>Cone3D.cpp(21): error C2440: '=' : cannot convert from 'BaseMaterial *' to 'SkyboxEffect *'
+                 Cast from base to derived requires dynamic_cast or static_cast
+         Cylinder3D.cpp
+     1>Cylinder3D.cpp(18): error C2440: '=' : cannot convert from 'BaseMaterial *' to 'SkyboxEffect *'
+                 Cast from base to derived requires dynamic_cast or static_cast
+         Sphere3D.cpp
+     1>Sphere3D.cpp(17): error C2440: '=' : cannot convert from 'BaseMaterial *' to 'SkyboxEffect *'
+                 Cast from base to derived requires dynamic_cast or static_cast
+         Teapot3D.cpp
+     1>Teapot3D.cpp(8): error C2440: '=' : cannot convert from 'BaseMaterial *' to 'SkyboxEffect *'
+                 Cast from base to derived requires dynamic_cast or static_cast
+         Torus3D.cpp
+     1>Done Building Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.09
+Time Elapsed 00:00:03.11

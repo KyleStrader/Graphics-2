@@ -21,6 +21,18 @@ uniform extern float  gSpecularPower;
 
 uniform extern float3 gEyePosW;
 
+uniform extern texture gCubeMap;
+
+sampler EnvMapS = sampler_state
+{
+	Texture = <gCubeMap>;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
+	AddressU = WRAP;
+	AddressV = WRAP;
+};
+
 struct VS_OUTPUT
 {
 	float4 posH: POSITION0;
@@ -74,6 +86,21 @@ float4 PhongPS(float3 normalW : TEXCOORD0, float3 posW : TEXCOORD1, float2 tex0 
 	da.a = gDiffuseMtrl.a;
 
 	float3 d = da.rgb * texColor;
+
+	/* Code for Environment Map reflections */
+	/*float3 envMapTex = reflect(-toEye, normalW);
+	  float3 reflectedColor = texCUBE(EnvMapS, envMapTex);
+	  float3 ambientMtrl = gReflectivity*reflectedColor + (1.0f-gReflectivity)*(gMtrl.ambient*texColor);
+	  float3 diffuseMtrl = gReflectivity*reflectedColor + (1.0f-gReflectivity)*(gMtrl.diffuse*texColor);
+
+	  float3 spec = t*(gMtrl.spec*gLight.spec).rgb;
+	  float3 diffuse = s*(diffuseMtrl*gLight.diffuse.rgb);
+	  float3 ambient = ambientMtrl*gLight.ambient;
+
+	  float3 final = ambient + diffuse + spec;
+
+	  return float4(final, gMtrl.diffuse.a*texColor.a);
+	  */
 
 	float4 color = float4(d + spec.rgb, gDiffuseMtrl.a);
 	//float4 color = float4(diffuse, gDiffuseMtrl.a);
