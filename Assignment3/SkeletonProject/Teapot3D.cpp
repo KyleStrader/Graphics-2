@@ -16,6 +16,7 @@ Teapot3D::~Teapot3D()
 void Teapot3D::Create(IDirect3DDevice9* gd3dDevice)
 {
 	HR(D3DXCreateTeapot(gd3dDevice, &mpMesh, NULL));
+	GenerateTBNData();
 	mNumVertices = mpMesh->GetNumVertices();
 	mNumTriangles = mpMesh->GetNumFaces();
 

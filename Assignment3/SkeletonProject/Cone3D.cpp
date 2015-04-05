@@ -29,6 +29,7 @@ Cone3D::~Cone3D()
 void Cone3D::Create(IDirect3DDevice9* gd3dDevice)
 {
 	HR(D3DXCreateCylinder(gd3dDevice, mRadiusBottom, mRadiusTop, mLength, mSliceCount, mStackCount, &mpMesh, NULL));
+	GenerateTBNData();
 	mNumVertices = mpMesh->GetNumVertices();
 	mNumTriangles = mpMesh->GetNumFaces();
 

@@ -23,13 +23,17 @@ struct VertexPos
 		mTexCoord(0.0f, 0.0f), 
 		mNormal(0.0f, 0.0f, 0.0f){}
 	
-	VertexPos(D3DXVECTOR3& pos, D3DXVECTOR3& texCoord, D3DXVECTOR3& normal) :mPos(pos), 
+	VertexPos(D3DXVECTOR3& pos, D3DXVECTOR3& texCoord, D3DXVECTOR3& normal/*, D3DXVECTOR3 binormal, D3DXVECTOR3 tangent*/) :mPos(pos),
 		mTexCoord(texCoord),
-		mNormal(normal){}
+		mNormal(normal)/*,
+		mBinormal(binormal),
+		mTangent(tangent)*/{}
 	
 	VertexPos(const D3DXVECTOR3& pos):mPos(pos){}
 
 	D3DXVECTOR3 mPos;
+	D3DXVECTOR3 mTangent;
+	D3DXVECTOR3 mBinormal;
 	D3DXVECTOR3 mNormal;
 	D3DXVECTOR2 mTexCoord;
 	static IDirect3DVertexDeclaration9* Decl;

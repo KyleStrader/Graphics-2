@@ -147,7 +147,8 @@ SkeletonClass::SkeletonClass(HINSTANCE hInstance, std::string winCaption, D3DDEV
 	{
 		m_Objects[obj]->Create(gd3dDevice);
 		m_Objects[obj]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
-		m_Objects[obj]->ConnectToTexture(TYPE_LIGHTING_DIFFUSE, gd3dDevice, "./Textures/crate.jpg");
+		m_Objects[obj]->ConnectToTexture(TYPE_LIGHTING_DIFFUSE, gd3dDevice, "./Textures/stone.jpg");
+		m_Objects[obj]->ConnectToNormalMap(gd3dDevice, "./Textures/stoneNormal.jpg");
 		m_Objects[obj]->ConnectToCubeMap(gd3dDevice, "./Textures/cubeMap.dds");
 		m_Objects[obj]->SetReflectivity(0.5f);
 	}

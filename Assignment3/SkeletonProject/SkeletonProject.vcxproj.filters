@@ -27,7 +27,6 @@
       <Filter>3D Objects</Filter>
     </ClCompile>
     <ClCompile Include="SkyboxEffect.cpp" />
-    <ClCompile Include="SkyboxObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3DClasses\BaseObject3D.h" />
@@ -57,7 +56,6 @@
       <Filter>3D Objects</Filter>
     </ClInclude>
     <ClInclude Include="SkyboxEffect.h" />
-    <ClInclude Include="SkyboxObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3D Objects">

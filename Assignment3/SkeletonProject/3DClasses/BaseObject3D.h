@@ -40,6 +40,7 @@ protected:
     virtual void buildVertexBuffer( IDirect3DDevice9* gd3dDevice );
     virtual void buildIndexBuffer( IDirect3DDevice9* gd3dDevice );
 	virtual void buildTexCoords(IDirect3DDevice9* gd3dDevice);
+	void GenerateTBNData();
 
 public:
     BaseObject3D(void);
@@ -53,6 +54,7 @@ public:
 	void ConnectEffect(EffectType type, ID3DXEffect* fx);
 	void ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile);
 	void ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
+	void ConnectToNormalMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
 	void MoveToPoint(float x, float y, float z);
 	void RotateAroundAxis(D3DXVECTOR3 axis, float degrees);
 

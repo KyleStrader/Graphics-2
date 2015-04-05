@@ -26,6 +26,7 @@ protected:
 
 	std::map<EffectType, IDirect3DTexture9*>	m_Textures;
 	IDirect3DCubeTexture9*	m_CubeMap;
+	IDirect3DTexture9* m_NormalMap;
 
 	//-------------- Effect --------------
     
@@ -102,6 +103,7 @@ public:
 
 	void ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile);
 	void ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
+	void ConnectToNormalMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
     void Render( ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat ); 
 
 	void ToggleDiffuse();

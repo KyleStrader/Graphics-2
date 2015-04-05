@@ -25,6 +25,7 @@ Torus3D::~Torus3D()
 void Torus3D::Create(IDirect3DDevice9* gd3dDevice)
 {
 	HR(D3DXCreateTorus(gd3dDevice, mInnerRadius, mOuterRadius, mNumSides, mNumRings, &mpMesh, NULL));
+	GenerateTBNData();
 	mNumVertices = mpMesh->GetNumVertices();
 	mNumTriangles = mpMesh->GetNumFaces();
 

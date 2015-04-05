@@ -18,7 +18,7 @@ BaseMaterial::BaseMaterial(void)
     //m_Effects = NULL;
 
 	//Init Material Colors
-	mLightVecW = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	mLightVecW = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	mDiffuseMtrl = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	mDiffuseLight = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	mAmbientMtrl = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
@@ -36,7 +36,7 @@ BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float shininess)
 	//m_Effect = NULL;
 
 	//Init Material Colors
-	mLightVecW = D3DXVECTOR3(0.5f, 0.5f, 1.5f);
+	mLightVecW = D3DXVECTOR3(1.5f, 1.5f, 1.5f);
 	mDiffuseMtrl = diffuseColor;
 	mDiffuseLight = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	mAmbientMtrl = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
@@ -199,6 +199,11 @@ void BaseMaterial::ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string so
 	HR(D3DXCreateCubeTextureFromFile(gd3dDevice, sourceFile.c_str(), &m_CubeMap));
 }
 
+void BaseMaterial::ConnectToNormalMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+{
+	HR(D3DXCreateTextureFromFile(gd3dDevice, sourceFile.c_str(), &m_NormalMap));
+}
+
 void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat)
 {
 	std::map<EffectType, ID3DXEffect*>::iterator it;
@@ -222,6 +227,7 @@ void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& vie
 void BaseMaterial::RenderDiffuseLightingEffect(EffectType type, ID3DXEffect* effect, ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat)
 {
 	HR(effect->SetTexture("gTex", m_Textures[type]));
+	HR(effect->SetTexture("gNormalMap", m_NormalMap));
 	HR(effect->SetTexture("gCubeMap", m_CubeMap));
 	HR(effect->SetMatrix(m_WVP_Handle, &(worldMat*viewMat*projMat)));
 	D3DXMATRIX worldInverseTranspose;

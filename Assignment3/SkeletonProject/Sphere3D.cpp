@@ -25,6 +25,7 @@ Sphere3D::~Sphere3D()
 void Sphere3D::Create(IDirect3DDevice9* gd3dDevice)
 {
 	HR(D3DXCreateSphere(gd3dDevice, mRadius, mSlices, mStacks, &mpMesh, NULL));
+	GenerateTBNData();
 	mNumVertices = mpMesh->GetNumVertices();
 	mNumTriangles = mpMesh->GetNumFaces();
 

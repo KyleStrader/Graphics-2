@@ -27,6 +27,7 @@ Box3D::~Box3D()
 void Box3D::Create(IDirect3DDevice9* gd3dDevice)
 {
 	HR(D3DXCreateBox(gd3dDevice, mWidth, mHeight, mDepth, &mpMesh, NULL));
+	GenerateTBNData();
 	mNumVertices = mpMesh->GetNumVertices();
 	mNumTriangles = mpMesh->GetNumFaces();
 

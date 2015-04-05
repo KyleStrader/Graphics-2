@@ -55,6 +55,11 @@ void BaseObject3D::ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string so
 	mpMaterial->ConnectToCubeMap(gd3dDevice, sourceFile);
 }
 
+void BaseObject3D::ConnectToNormalMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+{
+	mpMaterial->ConnectToNormalMap(gd3dDevice, sourceFile);
+}
+
 void BaseObject3D::SetReflectivity(float reflectivity)
 {
 	mpMaterial->setReflectivity(reflectivity);
@@ -70,6 +75,36 @@ void BaseObject3D::Create( IDirect3DDevice9* gd3dDevice )
 {
     buildVertexBuffer( gd3dDevice );
     buildIndexBuffer( gd3dDevice );
+}
+
+void BaseObject3D::GenerateTBNData()
+{
+	// Grab our vertex description
+	D3DVERTEXELEMENT9 elems[MAX_FVF_DECL_SIZE];
+	UINT numElems = 0;
+	VertexPos::Decl->GetDeclaration(elems, &numElems);
+
+	// Create a copy of our sphere mesh using our vertex description instead of the old one
+	ID3DXMesh* clonedTemp = 0;
+	HR(mpMesh->CloneMesh(D3DXMESH_MANAGED, elems, gd3dDevice, &clonedTemp));
+
+	// Release our old mesh since we have a copy we will be modifying in system memory
+	ReleaseCOM(mpMesh);
+
+	HR(D3DXComputeTangentFrameEx(
+		clonedTemp, // Input mesh
+		D3DDECLUSAGE_TEXCOORD, 0, // Vertex element of input tex-coords.  
+		D3DDECLUSAGE_BINORMAL, 0, // Vertex element to output binormal.
+		D3DDECLUSAGE_TANGENT, 0,  // Vertex element to output tangent.
+		D3DDECLUSAGE_NORMAL, 0,   // Vertex element to output normal.
+		0, // Options
+		0, // Adjacency
+		0.01f, 0.25f, 0.01f, // Thresholds for handling errors
+		&mpMesh, // Output mesh
+		0));         // Vertex Remapping
+
+	// Release our local copy since we no longer need it
+	ReleaseCOM(clonedTemp);
 }
 
 //-----------------------------------------------------------------------------
