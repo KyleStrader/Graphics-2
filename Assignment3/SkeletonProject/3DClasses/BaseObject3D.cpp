@@ -50,6 +50,16 @@ void BaseObject3D::ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string so
 	mpMaterial->ConnectToTexture(gd3dDevice, sourceFile);
 }
 
+void BaseObject3D::ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+{
+	mpMaterial->ConnectToCubeMap(gd3dDevice, sourceFile);
+}
+
+void BaseObject3D::SetReflectivity(float reflectivity)
+{
+	mpMaterial->setReflectivity(reflectivity);
+}
+
 //-----------------------------------------------------------------------------
 void BaseObject3D::Create( IDirect3DDevice9* gd3dDevice )
 {

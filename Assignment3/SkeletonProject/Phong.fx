@@ -23,6 +23,8 @@ uniform extern float3 gEyePosW;
 
 uniform extern texture gCubeMap;
 
+uniform extern float gReflectivity;
+
 sampler EnvMapS = sampler_state
 {
 	Texture = <gCubeMap>;
@@ -49,7 +51,7 @@ sampler TexS = sampler_state
 	MipFilter = LINEAR;
 };
 
-VS_OUTPUT PhongVS(float3 posL: POSITION0, float3 normalL: NORMAL0, float2 tex0: TEXCOORD0)
+VS_OUTPUT PhongVS(float3 posL: POSITION0, float3 normalL : NORMAL0, float2 tex0 : TEXCOORD0)
 {
 	VS_OUTPUT output = (VS_OUTPUT)0;
 
@@ -78,34 +80,22 @@ float4 PhongPS(float3 normalW : TEXCOORD0, float3 posW : TEXCOORD1, float2 tex0 
 	float t = pow(max(dot(r, toEye), 0.0f), gSpecularPower);
 	float s = max(dot(lightVec, normalW), 0.0f);
 
-	float3 spec = t*(gSpecularMtrl*gSpecularLight).rgb;
-	float3 diffuse = s*(gDiffuseLight).rgb;
-	float3 ambient = gAmbientMtrl.rgb*gAmbientLight.rgb;
-	float4 da;
-	da.rgb = diffuse + ambient;
-	da.a = gDiffuseMtrl.a;
-
-	float3 d = da.rgb * texColor;
+	float3 final;
+	float3 ambient, diffuse, spec;
 
 	/* Code for Environment Map reflections */
-	/*float3 envMapTex = reflect(-toEye, normalW);
-	  float3 reflectedColor = texCUBE(EnvMapS, envMapTex);
-	  float3 ambientMtrl = gReflectivity*reflectedColor + (1.0f-gReflectivity)*(gMtrl.ambient*texColor);
-	  float3 diffuseMtrl = gReflectivity*reflectedColor + (1.0f-gReflectivity)*(gMtrl.diffuse*texColor);
+	float3 envMapTex = reflect(-toEye, normalW);
+	float3 reflectedColor = texCUBE(EnvMapS, envMapTex);
 
-	  float3 spec = t*(gMtrl.spec*gLight.spec).rgb;
-	  float3 diffuse = s*(diffuseMtrl*gLight.diffuse.rgb);
-	  float3 ambient = ambientMtrl*gLight.ambient;
+	float3 ambientMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gAmbientMtrl.rgb*texColor);
+	float3 diffuseMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gDiffuseMtrl.rgb*texColor);
 
-	  float3 final = ambient + diffuse + spec;
-
-	  return float4(final, gMtrl.diffuse.a*texColor.a);
-	  */
-
-	float4 color = float4(d + spec.rgb, gDiffuseMtrl.a);
-	//float4 color = float4(diffuse, gDiffuseMtrl.a);
-
-	return color;
+	spec = t*(gSpecularMtrl.rgb*gSpecularLight.rgb).rgb;
+	diffuse = s*(diffuseMtrl.rgb*gDiffuseLight.rgb);
+	ambient = ambientMtrl*gAmbientLight.rgb;
+	
+	final = ambient + diffuse + spec;
+	return float4(final, gDiffuseMtrl.a);
 }
 
 technique PhongTech

@@ -29,7 +29,7 @@ BaseMaterial::BaseMaterial(void)
 	mSpecularPower = 8.0f;
 }
 
-BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float shininess)
+BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float specPower)
 {
 	m_Effect = NULL;
 
@@ -42,7 +42,26 @@ BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float shininess)
 	mSpecularMtrl = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
 	mSpecularLight = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mSpecularPower = shininess;
+	mSpecularPower = specPower;
+	//mReflectivity = 1.0f;
+}
+
+void BaseMaterial::setReflectivity(float reflectivity)
+{
+	mReflectivity = reflectivity;
+}
+
+void BaseMaterial::ToggleReflection()
+{
+	if (mReflectivity != 0.0f)
+	{
+		mReflectTemp = mReflectivity;
+		mReflectivity = 0;
+	}
+	else
+	{
+		mReflectivity = mReflectTemp;
+	}
 }
 
 void BaseMaterial::ToggleDiffuse()
@@ -107,6 +126,7 @@ void BaseMaterial::ConnectToEffect( ID3DXEffect* effect )
 	m_SpecularPowerHandle = m_Effect->GetParameterByName(0, "gSpecularPower");
 	m_ViewerPosWHandle = m_Effect->GetParameterByName(0, "gEyePosW");
 	m_WorldMatHandle = m_Effect->GetParameterByName(0, "gWorld");
+	m_ReflectivityHandle = m_Effect->GetParameterByName(0, "gReflectivity");
 }
 
 void BaseMaterial::ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
@@ -114,9 +134,15 @@ void BaseMaterial::ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string so
 	HR(D3DXCreateTextureFromFile(gd3dDevice, sourceFile.c_str(), &mTex));
 }
 
+void BaseMaterial::ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+{
+	HR(D3DXCreateCubeTextureFromFile(gd3dDevice, sourceFile.c_str(), &mCubeMap));
+}
+
 void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat)
 {
 	HR(m_Effect->SetTexture("gTex", mTex));
+	HR(m_Effect->SetTexture("gCubeMap", mCubeMap));
 	HR(m_Effect->SetMatrix(m_WVP_Handle, &(worldMat*viewMat*projMat)));	
 	D3DXMATRIX worldInverseTranspose;
 	D3DXMatrixInverse(&worldInverseTranspose, 0, &worldMat);
@@ -130,6 +156,7 @@ void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& vie
 	HR(m_Effect->SetValue(m_SpecularLightHandle, &mSpecularLight, sizeof(D3DXCOLOR)));
 	HR(m_Effect->SetValue(m_SpecularMtrlHandle, &mSpecularMtrl, sizeof(D3DXCOLOR)));
 	HR(m_Effect->SetFloat(m_SpecularPowerHandle, mSpecularPower));
+	HR(m_Effect->SetFloat(m_ReflectivityHandle, mReflectivity));
 	HR(m_Effect->SetMatrix(m_WorldMatHandle, &worldMat));
 	HR(m_Effect->CommitChanges());
 }

@@ -14,6 +14,7 @@
 #include <d3dx9.h>
 #include "../BaseMaterial.h"
 #include "../d3dUtil.h"
+#include "../SkyboxEffect.h"
 //=============================================================================
 struct IDirect3DVertexBuffer9;
 struct IDirect3DIndexBuffer9;
@@ -51,13 +52,17 @@ public:
 	void SetViewerPos(D3DXVECTOR3 &pos);
 	void ConnectEffect(ID3DXEffect* fx);
 	void ConnectToTexture(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
+	void ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
 	void MoveToPoint(float x, float y, float z);
 	void RotateAroundAxis(D3DXVECTOR3 axis, float degrees);
+
+	void SetReflectivity(float reflectivity);
 
 	ID3DXEffect* GetEffect() { return mpMaterial->GetEffect(); };
 	void ToggleDiffuse() { return mpMaterial->ToggleDiffuse(); };
 	void ToggleAmbient() { return mpMaterial->ToggleAmbient(); };
 	void ToggleSpecular() { return mpMaterial->ToggleSpecular(); };
+	void ToggleReflection() { return mpMaterial->ToggleReflection();};
 };
 //=============================================================================
 #endif // _BASE_OBJECT_3D_H

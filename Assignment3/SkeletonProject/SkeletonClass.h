@@ -23,6 +23,7 @@
 #include <vector>
 //=============================================================================
 class BaseObject3D;
+class SkyboxObject;
 //=============================================================================
 class SkeletonClass : public D3DApp
 {
@@ -55,6 +56,7 @@ private:
 	bool oKeyDown = false;
 	bool wKeyDown = false;
 	bool pKeyDown = false;
+	bool rKeyDown = false;
 	bool solidRender = true;
 	bool phongRender = true;
 	int currentObj = 0;
