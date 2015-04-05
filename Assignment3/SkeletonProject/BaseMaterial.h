@@ -25,6 +25,7 @@ protected:
 	//------------- Texture --------------
 
 	std::map<EffectType, IDirect3DTexture9*>	m_Textures;
+	IDirect3DCubeTexture9*	m_CubeMap;
 
 	//-------------- Effect --------------
     
@@ -40,6 +41,8 @@ protected:
 	D3DXCOLOR			mSpecularMtrl;
 	D3DXCOLOR			mSpecularLight;
 	float				mSpecularPower;
+	float				mReflectivity;
+	float				mTempReflect;
 
     D3DXMATRIX          m_WorldMat;
 	D3DXMATRIX			m_WorldInverseTranspose;
@@ -75,6 +78,7 @@ protected:
 	D3DXHANDLE			m_SpecularMtrlHandle;	// D3DX Color
 	D3DXHANDLE			m_SpecularLightHandle;	// D3DX Color
 	D3DXHANDLE			m_SpecularPowerHandle;	// Float (power of specualrity)
+	D3DXHANDLE			m_ReflectivityHandle;
 
 	//->Ambient Component
 	D3DXHANDLE          m_AmbientColHandle;		// D3DX Color
@@ -87,17 +91,20 @@ public:
     virtual ~BaseMaterial(void);
 
 	void setEyePos(D3DXVECTOR3 &pos);
+	void setReflectivity(float reflect);
 
 	void ConnectToEffect(EffectType type, ID3DXEffect* effect);
 
 	void DisconnectFromEffect(EffectType type);
 
 	void ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile);
+	void ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile);
     void Render( ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat ); 
 
 	void ToggleDiffuse();
 	void ToggleAmbient();
 	void ToggleSpecular();
+	void ToggleReflection();
 
 	ID3DXEffect* GetEffect(EffectType type) { return m_Effects.at(type); };
 

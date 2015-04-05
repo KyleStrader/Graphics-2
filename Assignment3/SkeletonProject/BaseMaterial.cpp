@@ -27,6 +27,8 @@ BaseMaterial::BaseMaterial(void)
 	mSpecularLight = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mSpecularPower = 8.0f;
+	mReflectivity = .5f;
+	mTempReflect = mReflectivity;
 }
 
 BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float shininess)
@@ -43,6 +45,21 @@ BaseMaterial::BaseMaterial(D3DXCOLOR diffuseColor, float shininess)
 	mSpecularLight = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mSpecularPower = shininess;
+	mReflectivity = .5f;
+	mTempReflect = mReflectivity;
+}
+
+void BaseMaterial::ToggleReflection()
+{
+	if (mReflectivity != 0.0f)
+	{
+		mTempReflect = mReflectivity;
+		mReflectivity = 0;
+	}
+	else
+	{
+		mReflectivity = mTempReflect;
+	}
 }
 
 void BaseMaterial::ToggleDiffuse()
@@ -131,6 +148,12 @@ void BaseMaterial::ConnectToDiffuseLightingEffect(ID3DXEffect* effect)
 	m_SpecularPowerHandle = effect->GetParameterByName(0, "gSpecularPower");
 	m_ViewerPosWHandle = effect->GetParameterByName(0, "gEyePosW");
 	m_WorldMatHandle = effect->GetParameterByName(0, "gWorld");
+	m_ReflectivityHandle = effect->GetParameterByName(0, "gReflectivity");
+}
+
+void BaseMaterial::setReflectivity(float reflect)
+{
+	mReflectivity = reflect;
 }
 
 void BaseMaterial::ConnectToEnviornmentMappingEffect(ID3DXEffect* effect)
@@ -145,7 +168,12 @@ void BaseMaterial::ConnectToNormalMappingEffect(ID3DXEffect* effect)
 
 void BaseMaterial::ConnectToTexture(EffectType type, IDirect3DDevice9* gd3dDevice, std::string sourceFile)
 {
-	HR(D3DXCreateTextureFromFile(gd3dDevice, sourceFile.c_str(), &m_Textures[type]/*!NOT SURE IF THIS WILL WORK!*/));
+	HR(D3DXCreateTextureFromFile(gd3dDevice, sourceFile.c_str(), &m_Textures[type]));
+}
+
+void BaseMaterial::ConnectToCubeMap(IDirect3DDevice9* gd3dDevice, std::string sourceFile)
+{
+	HR(D3DXCreateCubeTextureFromFile(gd3dDevice, sourceFile.c_str(), &m_CubeMap));
 }
 
 void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat)
@@ -171,6 +199,7 @@ void BaseMaterial::Render(ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& vie
 void BaseMaterial::RenderDiffuseLightingEffect(EffectType type, ID3DXEffect* effect, ID3DXMesh* mesh, D3DXMATRIX& worldMat, D3DXMATRIX& viewMat, D3DXMATRIX& projMat)
 {
 	HR(effect->SetTexture("gTex", m_Textures[type]));
+	HR(effect->SetTexture("gCubeMap", m_CubeMap));
 	HR(effect->SetMatrix(m_WVP_Handle, &(worldMat*viewMat*projMat)));
 	D3DXMATRIX worldInverseTranspose;
 	D3DXMatrixInverse(&worldInverseTranspose, 0, &worldMat);
@@ -184,6 +213,7 @@ void BaseMaterial::RenderDiffuseLightingEffect(EffectType type, ID3DXEffect* eff
 	HR(effect->SetValue(m_SpecularLightHandle, &mSpecularLight, sizeof(D3DXCOLOR)));
 	HR(effect->SetValue(m_SpecularMtrlHandle, &mSpecularMtrl, sizeof(D3DXCOLOR)));
 	HR(effect->SetFloat(m_SpecularPowerHandle, mSpecularPower));
+	HR(effect->SetFloat(m_ReflectivityHandle, mReflectivity));
 	HR(effect->SetMatrix(m_WorldMatHandle, &worldMat));
 	HR(effect->CommitChanges());
 }

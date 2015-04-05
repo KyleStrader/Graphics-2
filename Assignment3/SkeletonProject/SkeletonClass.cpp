@@ -148,6 +148,8 @@ SkeletonClass::SkeletonClass(HINSTANCE hInstance, std::string winCaption, D3DDEV
 		m_Objects[obj]->Create(gd3dDevice);
 		m_Objects[obj]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
 		m_Objects[obj]->ConnectToTexture(TYPE_LIGHTING_DIFFUSE, gd3dDevice, "./Textures/crate.jpg");
+		m_Objects[obj]->ConnectToCubeMap(gd3dDevice, "./Textures/cubeMap.dds");
+		m_Objects[obj]->SetReflectivity(.5f);
 	}
 	m_Objects[2]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), 90);
 	m_Objects[5]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), -90);
@@ -253,6 +255,19 @@ void SkeletonClass::handleInput(float dt)
 		}
 	}
 	else wKeyDown = false;
+
+	if (gDInput->keyDown(DIK_R))
+	{
+		if (!rKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->ToggleReflection();
+			}
+			rKeyDown = true;
+		}
+	}
+	else rKeyDown = false;
 
 	if (gDInput->keyDown(DIK_P))
 	{
