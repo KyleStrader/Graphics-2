@@ -58,6 +58,9 @@ public:
 
 	ID3DXEffect* GetEffect(EffectType type) { return mpMaterial->GetEffect(type); };
 	void SetReflectivity(float reflectivity);
+	void SetSpecPower(float specPower);
+	void IncreaseReflectivity() { mpMaterial->IncreaseReflectivity(); };
+	void DecreaseReflectivity() { mpMaterial->DecreaseReflectivity(); };
 
 	void ToggleDiffuse() { return mpMaterial->ToggleDiffuse(); };
 	void ToggleAmbient() { return mpMaterial->ToggleAmbient(); };

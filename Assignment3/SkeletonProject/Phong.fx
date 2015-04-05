@@ -87,14 +87,23 @@ float4 PhongPS(float3 normalW : TEXCOORD0, float3 posW : TEXCOORD1, float2 tex0 
 	float3 envMapTex = reflect(-toEye, normalW);
 	float3 reflectedColor = texCUBE(EnvMapS, envMapTex);
 
-	float3 ambientMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gAmbientMtrl.rgb*texColor);
-	float3 diffuseMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gDiffuseMtrl.rgb*texColor);
+	//float3 ambientMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gAmbientMtrl.rgb*texColor);
+	//float3 diffuseMtrl = gReflectivity*reflectedColor + (1.0f - gReflectivity)*(gDiffuseMtrl.rgb*texColor);
+	float ambientCoeff = .2f;
+	float diffuseCoeff = .65f;
+	float specCoeff = .15f;
 
-	spec = t*(gSpecularMtrl.rgb*gSpecularLight.rgb).rgb;
+	float3 ambientMtrl = (gAmbientMtrl.rgb*texColor*ambientCoeff);
+	float3 diffuseMtrl = (gDiffuseMtrl.rgb*texColor*diffuseCoeff);
+	float3 specMtrl = (gReflectivity*reflectedColor) + (1.0f - gReflectivity)*(gSpecularMtrl.rgb*texColor*specCoeff);
+
+	//spec = t*(gSpecularMtrl.rgb*gSpecularLight.rgb).rgb;
+	spec = t*(specMtrl.rgb*gSpecularLight.rgb).rgb;
 	diffuse = s*(diffuseMtrl.rgb*gDiffuseLight.rgb);
 	ambient = ambientMtrl*gAmbientLight.rgb;
 	
-	final = ambient + diffuse + spec;
+	
+	final = (ambient) + (diffuse) + (spec);
 	return float4(final, gDiffuseMtrl.a);
 }
 

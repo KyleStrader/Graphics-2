@@ -149,7 +149,7 @@ SkeletonClass::SkeletonClass(HINSTANCE hInstance, std::string winCaption, D3DDEV
 		m_Objects[obj]->ConnectEffect(TYPE_LIGHTING_DIFFUSE, mFX);
 		m_Objects[obj]->ConnectToTexture(TYPE_LIGHTING_DIFFUSE, gd3dDevice, "./Textures/crate.jpg");
 		m_Objects[obj]->ConnectToCubeMap(gd3dDevice, "./Textures/cubeMap.dds");
-		m_Objects[obj]->SetReflectivity(.5f);
+		m_Objects[obj]->SetReflectivity(0.5f);
 	}
 	m_Objects[2]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), 90);
 	m_Objects[5]->RotateAroundAxis(D3DXVECTOR3(1.0f, 0.0f, 0.0f), -90);
@@ -269,6 +269,31 @@ void SkeletonClass::handleInput(float dt)
 	}
 	else rKeyDown = false;
 
+	if (gDInput->keyDown(DIK_EQUALS))
+	{
+		if (!plusKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->IncreaseReflectivity();
+			}
+			plusKeyDown = true;
+		}
+	}
+	else plusKeyDown = false;
+	if (gDInput->keyDown(DIK_MINUS))
+	{
+		if (!minusKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->DecreaseReflectivity();
+			}
+			minusKeyDown = true;
+		}
+	}
+	else minusKeyDown = false;
+
 	if (gDInput->keyDown(DIK_P))
 	{
 		if (!pKeyDown)
@@ -285,6 +310,93 @@ void SkeletonClass::handleInput(float dt)
 		}
 	}
 	else pKeyDown = false;
+
+	// NumKeys
+	if (gDInput->keyDown(DIK_1))
+	{
+		if (!oneKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(2.0f);
+			}
+			oneKeyDown = true;
+		}
+	}
+	else oneKeyDown = false;
+	if (gDInput->keyDown(DIK_2))
+	{
+		if (!twoKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(4.0f);
+			}
+			twoKeyDown = true;
+		}
+	}
+	else twoKeyDown = false;
+	if (gDInput->keyDown(DIK_3))
+	{
+		if (!threeKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(8.0f);
+			}
+			threeKeyDown = true;
+		}
+	}
+	else threeKeyDown = false;
+	if (gDInput->keyDown(DIK_4))
+	{
+		if (!fourKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(16.0f);
+			}
+			fourKeyDown = true;
+		}
+	}
+	else fourKeyDown = false;
+	if (gDInput->keyDown(DIK_5))
+	{
+		if (!fiveKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(32.0f);
+			}
+			fiveKeyDown = true;
+		}
+	}
+	else fiveKeyDown = false;
+	if (gDInput->keyDown(DIK_6))
+	{
+		if (!sixKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(64.0f);
+			}
+			sixKeyDown = true;
+		}
+	}
+	else sixKeyDown = false;
+	if (gDInput->keyDown(DIK_7))
+	{
+		if (!sevenKeyDown)
+		{
+			for (unsigned int obj = 0; obj<m_Objects.size(); obj++)
+			{
+				m_Objects[obj]->SetSpecPower(128.0f);
+			}
+			sevenKeyDown = true;
+		}
+	}
+	else sevenKeyDown = false;
+	// NumKeys
 
 
 	// Divide by 50 to make mouse less sensitive. 

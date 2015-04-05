@@ -156,6 +156,29 @@ void BaseMaterial::setReflectivity(float reflect)
 	mReflectivity = reflect;
 }
 
+void BaseMaterial::setSpecPower(float specPower)
+{
+	mSpecularPower = specPower;
+}
+
+void BaseMaterial::IncreaseReflectivity()
+{
+	if (mReflectivity < 1.0f)
+	{
+		mReflectivity += .1f;
+	}
+	else mReflectivity = 1.0f;
+}
+
+void BaseMaterial::DecreaseReflectivity()
+{
+	if (mReflectivity > 0.0f)
+	{
+		mReflectivity -= .1f;
+	}
+	else mReflectivity = 0.0f;
+}
+
 void BaseMaterial::ConnectToEnviornmentMappingEffect(ID3DXEffect* effect)
 {
 	//Nothing here yet!!

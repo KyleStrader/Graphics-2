@@ -1,6 +1,22 @@
-﻿Build started 4/4/2015 9:24:19 PM.
+﻿Build started 4/4/2015 9:53:56 PM.
      1>Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt 3DClasses\BaseObject3D.cpp BaseMaterial.cpp Box3D.cpp Cone3D.cpp Cylinder3D.cpp SkeletonClass.cpp SkyboxEffect.cpp SkyboxObject.cpp Sphere3D.cpp Teapot3D.cpp Torus3D.cpp
+         Torus3D.cpp
+         Teapot3D.cpp
+         Sphere3D.cpp
+         SkyboxObject.cpp
+         SkyboxEffect.cpp
+         SkeletonClass.cpp
+         Cylinder3D.cpp
+         Cone3D.cpp
+         BaseMaterial.cpp
+         Generating Code...
+         Compiling...
+         Box3D.cpp
+         BaseObject3D.cpp
+         Generating Code...
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9d.lib dxguid.lib DxErr.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.lib" /MACHINE:X86 /SAFESEH Debug\BaseObject3D.obj
          Debug\Vertex.obj
          Debug\BaseMaterial.obj
@@ -16,10 +32,9 @@
          Debug\Sphere3D.obj
          Debug\Teapot3D.obj
          Debug\Torus3D.obj
-     1>BaseObject3D.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          SkeletonProject.vcxproj -> C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\Debug\SkeletonProject.exe
      1>Done Building Project "C:\Users\Cody\Desktop\Graphics-2\Assignment3\SkeletonProject\SkeletonProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.50
+Time Elapsed 00:00:10.43

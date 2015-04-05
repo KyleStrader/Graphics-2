@@ -92,6 +92,9 @@ public:
 
 	void setEyePos(D3DXVECTOR3 &pos);
 	void setReflectivity(float reflect);
+	void setSpecPower(float specPower);
+	void IncreaseReflectivity();
+	void DecreaseReflectivity();
 
 	void ConnectToEffect(EffectType type, ID3DXEffect* effect);
 

@@ -57,6 +57,15 @@ private:
 	bool wKeyDown = false;
 	bool pKeyDown = false;
 	bool rKeyDown = false;
+	bool plusKeyDown = false;
+	bool minusKeyDown = false;
+	bool oneKeyDown = false;
+	bool twoKeyDown = false;
+	bool threeKeyDown = false;
+	bool fourKeyDown = false;
+	bool fiveKeyDown = false;
+	bool sixKeyDown = false;
+	bool sevenKeyDown = false;
 	bool solidRender = true;
 	bool phongRender = true;
 	int currentObj = 0;

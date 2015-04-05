@@ -60,6 +60,11 @@ void BaseObject3D::SetReflectivity(float reflectivity)
 	mpMaterial->setReflectivity(reflectivity);
 }
 
+void BaseObject3D::SetSpecPower(float specPower)
+{
+	mpMaterial->setSpecPower(specPower);
+}
+
 //-----------------------------------------------------------------------------
 void BaseObject3D::Create( IDirect3DDevice9* gd3dDevice )
 {
